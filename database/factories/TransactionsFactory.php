@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Products>
  */
-class ProductsFactory extends Factory
+class TransactionsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +18,8 @@ class ProductsFactory extends Factory
     {
         return [
             'name'=>$this->faker->word,
-            'harga'=>$this->faker->numberBetween(15000,30000),
-            'kategori'=>$this->faker->word,
+            'product'=>$this->faker->word,
+            'total'=>$this->faker->numberBetween(50000, 60000),
         ];
     }
 }

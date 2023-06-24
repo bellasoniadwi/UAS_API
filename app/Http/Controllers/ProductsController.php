@@ -29,14 +29,14 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $product_name = $request->input('name');
-        $product_price = $request->input('price');
-        $product_description = $request->input('description');
+        $name = $request->input('name');
+        $harga = $request->input('harga');
+        $kategori = $request->input('kategori');
 
         $product = Products::create([
-            'name' => $product_name, 
-            'price' => $product_price, 
-            'description' => $product_description
+            'name' => $name, 
+            'harga' => $harga, 
+            'kategori' => $kategori
         ]);
         return response()->json([
             'data' => new ProductResource($product)
@@ -56,14 +56,14 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Products $product)
     {
-        $product_name = $request->input('name');
-        $product_price = $request->input('price');
-        $product_description = $request->input('description');
+        $name = $request->input('name');
+        $harga = $request->input('harga');
+        $kategori = $request->input('kategori');
 
         $product->update([
-            'name' => $product_name, 
-            'price' => $product_price, 
-            'description' => $product_description
+            'name' => $name, 
+            'harga' => $harga, 
+            'kategori' => $kategori
         ]);
 
         return response()->json([
