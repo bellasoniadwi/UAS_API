@@ -78,8 +78,10 @@ class MembersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Members $member)
+    public function destroy($name)
     {
+        $member = Members::where('name', $name)->first();
+
         $member->delete();
         return response()->json(null, 204);
     }
