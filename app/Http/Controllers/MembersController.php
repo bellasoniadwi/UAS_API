@@ -40,6 +40,7 @@ class MembersController extends Controller
             'telepon' => $telepon,
             'usia' => $usia
         ]);
+
         return response()->json([
             'data' => new MemberResource($member)
         ], 201);
@@ -56,8 +57,10 @@ class MembersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Members $member)
+    public function update(Request $request, $name)
     {
+        $member = Members::where('name', $name)->first();
+
         $name = $request->input('name');
         $alamat = $request->input('alamat');
         $telepon = $request->input('telepon');
@@ -69,10 +72,12 @@ class MembersController extends Controller
             'telepon' => $telepon,
             'usia' => $usia
         ]);
+        
 
         return response()->json([
             'data' => new MemberResource($member)
         ],200);
+
     }
 
     /**
