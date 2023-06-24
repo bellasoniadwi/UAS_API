@@ -33,11 +33,14 @@ class ProductsController extends Controller
         $harga = $request->input('harga');
         $kategori = $request->input('kategori');
 
+
         $product = Products::create([
             'name' => $name, 
             'harga' => $harga, 
             'kategori' => $kategori
+
         ]);
+
         return response()->json([
             'data' => new ProductResource($product)
         ], 201);
@@ -54,21 +57,27 @@ class ProductsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Products $product)
+    public function update(Request $request, $name)
     {
+        $product = Products::where('name', $name)->first();
+
         $name = $request->input('name');
         $harga = $request->input('harga');
         $kategori = $request->input('kategori');
+
 
         $product->update([
             'name' => $name, 
             'harga' => $harga, 
             'kategori' => $kategori
+
         ]);
+        
 
         return response()->json([
             'data' => new ProductResource($product)
         ],200);
+
     }
 
     /**

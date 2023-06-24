@@ -54,8 +54,10 @@ class TransactionsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Transactions $transaction)
+    public function update(Request $request, $name)
     {
+        $transaction = Transactions::where('name', $name)->first();
+
         $name = $request->input('name');
         $product = $request->input('product');
         $total = $request->input('total');
