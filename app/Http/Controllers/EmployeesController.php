@@ -40,6 +40,7 @@ class EmployeesController extends Controller
             'telepon' => $telepon,
             'jabatan' => $jabatan
         ]);
+        
         return response()->json([
             'data' => new EmployeeResource($employee)
         ], 201);
@@ -56,8 +57,10 @@ class EmployeesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Employees $employee)
+    public function update(Request $request, $name)
     {
+        $employee = Employees::where('name', $name)->first();
+
         $name = $request->input('name');
         $email = $request->input('email');
         $telepon = $request->input('telepon');
@@ -69,10 +72,12 @@ class EmployeesController extends Controller
             'telepon' => $telepon,
             'jabatan' => $jabatan
         ]);
+        
 
         return response()->json([
             'data' => new EmployeeResource($employee)
         ],200);
+        
     }
 
     /**
